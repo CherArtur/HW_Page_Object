@@ -1,13 +1,14 @@
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class WorkPracticeForm {
+public class PageObjectsPracticeForm {
     @BeforeAll
     static void beforeAll() {
         Configuration.holdBrowserOpen = true;
@@ -18,18 +19,15 @@ public class WorkPracticeForm {
 
     @Test
     void workPracticeForm() {
-        String firstName = "Artur",
-        lastName = "Cherepanov",
-        userEmail = "art.cherepanov@yandex.ru",
-        userNumber = "79128877287",
-        currentAddress = "Big Willy Road 155/2";
+        String firstName = "Artur";
+        String lastName = "Cherepanov";
+        String userEmail = "art.cherepanov@yandex.ru";
+        String userNumber = "79128877287";
+        String currentAddress = "Big Willy Road 155/2";
 
-        //Открыть страницу Practice Form
-        open("/automation-practice-form");
-        $(".main-header").shouldHave(text("Practice Form"));
-        //Убрать рекламу и футер
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
+        new RegistrationPage().openPage();
+
+
 
         //Внести данные в форму
         $("#firstName").setValue(firstName);
