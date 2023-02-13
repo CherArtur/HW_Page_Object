@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class PageObjectsPracticeForm  extends TestBase {
+public class PageObjectsPracticeForm extends TestBase {
 
 
     @Test
@@ -19,41 +19,42 @@ public class PageObjectsPracticeForm  extends TestBase {
                 lastName = "Cherepanov",
                 userEmail = "art.cherepanov@yandex.ru",
                 userNumber = "7912887728",
-                currentAddress = "Big Willy Road 155/2";
+                currentAddress = "Big Willy Road 155/2",
+                subjectItem = "Physics",
+                pickState = "Haryana",
+                pickCity = "Panipat";
 
-        regPage.openPage();
+        regPage.openPage()
 
 
-        //Внести данные в форму
-        regPage.setFirstName(firstName);
-        regPage.setLastName(lastName);
-        regPage.setUserEmail(userEmail);
-        regPage.setGender("Male");
-        regPage.setUserNumber(userNumber);
-        regPage.setCalendarDate("07","February","1990");
+                //Внести данные в форму
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setUserEmail(userEmail)
+                .setGender("Male")
+                .setUserNumber(userNumber)
+                .setCalendarDate("07", "February", "1990")
+                .setSubjectsItem(subjectItem)
+                .setHobbiesItem("Reading")
+                .contributePictures()
+                .setCurrentAddress(currentAddress)
+                .chooseState(pickState)
+                .chooseCity(pickCity)
+                .chooseSubmit()
 
-        $("#subjectsInput").setValue("Physic").pressEnter();
-        $("#hobbiesWrapper").$(byText("Reading")).click();
-        $("#uploadPicture").uploadFromClasspath("Pictures/фин_юмор2.jpg");
-        regPage.setCurrentAddress(currentAddress);
-        $("#state").click();
-        $("#state").$(byText("Haryana")).click();
-        $("#city").click();
-        $("#city").$(byText("Panipat")).click();
-        $("#submit").click();
 
-        //Проверка заполненной формы
-        regPage.visibleModalResults();
-        regPage.checkResult("Student Name", firstName + lastName);
-        regPage.checkResult("Student Email", userEmail);
-        regPage.checkResult("Gender", "Male");
-        regPage.checkResult("Mobile", userNumber);
-        regPage.checkResult("Date of Birth", "07 February,1990");
-        regPage.checkResult("Subjects", "Physics");
-        regPage.checkResult("Hobbies", "Reading");
-        regPage.checkResult("Picture", "фин_юмор2.jpg");
-        regPage.checkResult("Address", currentAddress);
-        regPage.checkResult("State and City", "Haryana Panipat");
+                //Проверка заполненной формы
+                .visibleModalResults()
+                .checkResult("Student Name", firstName + " " + lastName)
+                .checkResult("Student Email", userEmail)
+                .checkResult("Gender", "Male")
+                .checkResult("Mobile", userNumber)
+                .checkResult("Date of Birth", "07 February,1990")
+                .checkResult("Subjects", subjectItem)
+                .checkResult("Hobbies", "Reading")
+                .checkResult("Picture", "фин_юмор2.jpg")
+                .checkResult("Address", currentAddress)
+                .checkResult("State and City", pickState + " " + pickCity);
 
 
     }

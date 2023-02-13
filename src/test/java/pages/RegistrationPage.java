@@ -13,41 +13,85 @@ public class RegistrationPage {
     RegistrationResultModal registrationResultModal = new RegistrationResultModal();
     private final String titleText = "Practice Form";
 
-    public void openPage() {
+    public RegistrationPage openPage() {
         //Открыть страницу Practice Form
         open("/automation-practice-form");
         $(".main-header").shouldHave(text(titleText));
         //Убрать рекламу и футер
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
+        return this;
     }
 
-    public void setFirstName(String value) {
+    public RegistrationPage setFirstName(String value) {
         $("#firstName").setValue(value);
+        return this;
     }
-    public void setLastName(String value) {
+    public RegistrationPage setLastName(String value) {
         $("#lastName").setValue(value);
+        return this;
     }
-    public void setUserEmail(String value) {
+    public RegistrationPage setUserEmail(String value) {
         $("#userEmail").setValue(value);
+        return this;
     }
-    public void setGender(String value) {
+    public RegistrationPage setGender(String value) {
         $("#genterWrapper").$(byText(value)).click();
+        return this;
     }
-    public void setUserNumber(String value) {
+    public RegistrationPage setUserNumber(String value) {
         $("#userNumber").setValue(value);
+        return this;
     }
-    public void setCurrentAddress(String value) {
+
+
+    public RegistrationPage setSubjectsItem(String value) {
+        $("#subjectsInput").setValue(value).pressEnter();
+        return this;
+    }
+
+    public RegistrationPage setHobbiesItem(String value) {
+        $("#hobbiesWrapper").$(byText(value)).click();
+        return this;
+    }
+
+    public RegistrationPage contributePictures() {
+        $("#uploadPicture").uploadFromClasspath("Pictures/фин_юмор2.jpg");
+        return this;
+    }
+
+    public RegistrationPage setCurrentAddress(String value) {
         $("#currentAddress").setValue(value);
+        return this;
     }
-    public void setCalendarDate(String day, String month, String year) {
+
+    public RegistrationPage chooseState(String value) {
+        $("#state").click();
+        $("#state").$(byText(value)).click();
+        return this;
+    }
+
+    public RegistrationPage chooseCity(String value) {
+        $("#city").click();
+        $("#city").$(byText(value)).click();
+        return this;
+    }
+
+    public RegistrationPage chooseSubmit() {
+        $("#submit").click();
+        return this;
+    }
+    public RegistrationPage setCalendarDate(String day, String month, String year) {
         $("#dateOfBirthInput").click();
         calendarComponents.setDate(day, month, year);
+        return this;
     }
-    public void visibleModalResults(){
+    public RegistrationPage visibleModalResults(){
         registrationResultModal.verifyModalVisible();
+        return this;
     }
-    public void checkResult(String key, String value){
+    public RegistrationPage checkResult(String key, String value){
         registrationResultModal.checkModalResults(key, value);
+        return this;
     }
 }

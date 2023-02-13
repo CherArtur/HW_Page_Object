@@ -1,3 +1,5 @@
+package testCases;
+
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -21,7 +23,7 @@ public class WorkPracticeForm {
         String firstName = "Artur",
         lastName = "Cherepanov",
         userEmail = "art.cherepanov@yandex.ru",
-        userNumber = "79128877287",
+        userNumber = "7912887728",
         currentAddress = "Big Willy Road 155/2";
 
         //Открыть страницу Practice Form
