@@ -56,7 +56,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage contributePictures() {
-        $("#uploadPicture").uploadFromClasspath("Pictures/фин_юмор2.jpg");
+        $("#uploadPicture").uploadFromClasspath("pictures/фин_юмор2.jpg");
         return this;
     }
 

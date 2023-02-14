@@ -1,4 +1,4 @@
-package testCases;
+package testcases;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
@@ -45,7 +45,7 @@ public class WorkPracticeForm {
         $(".react-datepicker__day--007:not(.react-datepicker__day--outside-month)").click();
         $("#subjectsInput").setValue("Physic").pressEnter();
         $("#hobbiesWrapper").$(byText("Reading")).click();
-        $("#uploadPicture").uploadFromClasspath("Pictures/фин_юмор2.jpg");
+        $("#uploadPicture").uploadFromClasspath("pictures/фин_юмор2.jpg");
         $("#currentAddress").setValue(currentAddress);
         $("#state").click();
         $("#state").$(byText("Haryana")).click();
